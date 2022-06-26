@@ -8,12 +8,6 @@ use App\Http\Controllers\Companion_Controlle;
 
 /* |------------------------------------------------------------- | API Routes |----------------------------------------------------------------------------*/
 
-//Route::get('/company', [CompanyController1::class , 'index']);
-//Route::post('/add-student', [CompanyController1::class , 'store']);
-//Route::get('/edit-student/{id}', [CompanyController1::class , 'search']);
-//Route::post('/update-student/{id}', [CompanyController1::class , 'update']);
-//Route::delete('delete-student/{id}', [CompanyController1::class , 'destroy']);
-
 Route::get      ('/companys',           [Companion_Controlle::class , 'index1'  ]);
 Route::get      ('/drivers',            [Companion_Controlle::class , 'index'   ]);
 Route::post     ('/add-drivers',        [Companion_Controlle::class , 'store'   ]);
