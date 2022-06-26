@@ -79,6 +79,11 @@ class Companion_Controlle extends Controller
         $company->Contact_No = $request->Input('contact_no');
         $company->Email = $request->Input('email');
         $company->NIC = $request->Input('nic');
+        $company->Vehicle_type = $request->Input('vehicle_type');
+        $company->Vehicle_brand = $request->Input('vehicle_brand');
+        $company->Vehicle_color = $request->Input('vehicle_color');
+        $company->Vehicle_number = $request->Input('vehicle_number');
+        $company->Numberofpassenger = $request->Input('numberofpassenger');
         $company->update();
 
         return response()->json([
