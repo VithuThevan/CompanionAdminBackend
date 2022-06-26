@@ -13,7 +13,7 @@ class Companion_Controlle extends Controller
      */
     public function index(): \Illuminate\Http\Response|array
     {
-        $company = Companion_Complete::where('Role','=','Driver')->get();
+        $company = Companion_Complete::where('Role', '=', 'Driver')->get();
         return ([
             'status' => 200,
             'company' => $company
@@ -21,7 +21,15 @@ class Companion_Controlle extends Controller
     }
     public function index1(): \Illuminate\Http\Response|array
     {
-        $company = Companion_Complete::where('Role','=','Company')->get();
+        $company = Companion_Complete::where('Role', '=', 'Company')->get();
+        return ([
+            'status' => 200,
+            'company' => $company
+        ]);
+    }
+    public function index2(): \Illuminate\Http\Response|array
+    {
+        $company = Companion_Complete::where('Role', '=', 'Vehicle_Owner')->get();
         return ([
             'status' => 200,
             'company' => $company
