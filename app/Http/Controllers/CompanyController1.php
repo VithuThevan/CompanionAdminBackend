@@ -11,7 +11,7 @@ class CompanyController1 extends Controller
      *
      * @return
      */
-    public function index(): array
+    public function index1(): array
     {
         $company = Company::all();
         return ([
@@ -101,7 +101,7 @@ class CompanyController1 extends Controller
         $company = Company::where('id', $id)->get();
         return ([
             "status" => 200,
-            "company" => $company,
+            "driver" => $company,
         ]);
     }
 

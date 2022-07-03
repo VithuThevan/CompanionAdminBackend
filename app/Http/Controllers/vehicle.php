@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Models\Driver;
-class DriverController extends Controller
+use App\Models\vehicledetails;
+
+class vehicle extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class DriverController extends Controller
      */
     public function index1(): array
     {
-        $driver = Driver::all();
+        $driver = vehicledetails::all();
         return ([
             'status' => 200,
             'company' => $driver
@@ -29,7 +30,7 @@ class DriverController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $driver = new Driver;
+        $driver = new vehicledetails;
         $driver->Driver_Name = $request->Input('name');
         $driver->Driver_Address = $request->Input('address');
         $driver->Driver_Number = $request->Input('contact_no');
@@ -50,7 +51,7 @@ class DriverController extends Controller
      */
     public function show($id)
     {
-        return Driver::where('id', $id)->get();
+        return vehicledetails::where('id', $id)->get();
     }
 
     /**
@@ -62,11 +63,12 @@ class DriverController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $driver = Driver::find($id);
-        $driver->Driver_Name = $request->Input('name');
-        $driver->Driver_Address = $request->Input('address');
-        $driver->Driver_Number = $request->Input('contact_no');
-        $driver->Driver_Email = $request->Input('email');
+        $driver = vehicledetails::find($id);
+        $driver->Vehicle_type = $request->Input('vehicle_type');
+        $driver->Vehicle_brand = $request->Input('vehicle_brand');
+        $driver->Vehicle_color = $request->Input('vehicle_color');
+        $driver->Vehicle_Number = $request->Input('vehicle_number');
+        $driver->Number_of_passenger = $request->Input('numberofpassenger');
         $driver->save();
 
         return response()->json([
@@ -83,7 +85,7 @@ class DriverController extends Controller
      */
     public function destroy($id)
     {
-        $Company = Driver::find($id);
+        $Company = vehicledetails::find($id);
         $Company->delete();
         return response()->json([
             'status' => 200,
@@ -99,7 +101,7 @@ class DriverController extends Controller
      */
     public function search($id): array
     {
-        $driver = Driver::where('id', $id)->get();
+        $driver = vehicledetails::where('id', $id)->get();
         return ([
             "status" => 200,
             "driver" => $driver,

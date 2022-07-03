@@ -36,4 +36,24 @@ class CompleteOrderController extends Controller
             'onorder' => $names,
         ]);
     }
+
+    public function index(){
+        $vithu = CompletedOrder::all();
+        return response()->json([
+            'status'=> 200,
+            'company' => $vithu,
+        ]);
+    }
+
+    public function FileUpload(Request $request){
+        $request->file->store('Uploads');
+        $fileupload = new CompletedOrder;
+        $fileupload->File = $request->file->hashName();
+        $results = $fileupload->save();
+        if($results){
+            return ["File Uploaded to database"];
+        }else{
+            return "File Not Uploaded to database";
+        }
+    }
 }

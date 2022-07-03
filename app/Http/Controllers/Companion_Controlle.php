@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Companion_Complete;
+use App\Models\Drivers_with_vehicles;
 class Companion_Controlle extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class Companion_Controlle extends Controller
      */
     public function index(): \Illuminate\Http\Response|array
     {
-        $company = Companion_Complete::where('Role', '=', 'Driver')->get();
+        $company = Drivers_with_vehicles::all();
         return ([
             'status' => 200,
             'company' => $company
