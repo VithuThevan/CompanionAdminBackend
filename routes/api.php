@@ -11,6 +11,8 @@ use App\Http\Controllers\DriverVehicle;
 use App\Http\Controllers\CompanyController1;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\vehicle;
+use App\Models\CompletedOrder;
+use App\Mail\testmail;
 
 /* |------------------------------------------------------------- | API Routes |----------------------------------------------------------------------------*/
 
@@ -57,6 +59,7 @@ Route::get('complete/{id}', [CompleteOrderController::class, 'viewordersbyid']);
 Route::post('add/complete', [CompleteOrderController::class, 'insert']);
 Route::get('/payment',[CompleteOrderController::class,'index']);
 Route::post('/fileupload',[CompleteOrderController::class,'FileUpload']);
+Route::get('/send-email',[CompleteOrderController::class,'sendEmail']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
