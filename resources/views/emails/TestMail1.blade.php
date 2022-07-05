@@ -7,12 +7,9 @@
     <title>Test Mail</title>
 </head>
 <body>
-    <h1>Hi user!</h1>
-    <p>Your Image has been verified. We could not accept your Image
-        Because either the amount mentioned in the slip differs with the fare amount.
-        So, please make sure that you upload the clear image of correct bank 
-        deposit slip.
-    </p>
+    <h1>Hi there!</h1>
+    <p>A good news! Your payment deposit slip has been verified and approved!</p>
+    <p>Keep Enjoying the oncoming journeys!</p>
     <p>Thank you!</p>
     <p>Kind Regards,</p>
     <p>Companion.<br/>With you! For you!</p>

@@ -60,7 +60,8 @@ Route::post('add/complete', [CompleteOrderController::class, 'insert']);
 Route::get('/payment',[CompleteOrderController::class,'index']);
 Route::post('/fileupload',[CompleteOrderController::class,'FileUpload']);
 Route::get('/send-email',[CompleteOrderController::class,'sendEmail']);
-
+Route::post('/reject-payment/{id}',[CompleteOrderController::class,'update']);
+Route::post('/accept-payment/{id}',[CompleteOrderController::class,'update1']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
