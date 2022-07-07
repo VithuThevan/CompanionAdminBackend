@@ -6,7 +6,8 @@ use App\Models\CompletedOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\testmail;
-use App\Mail\testmail1; 
+use App\Mail\testmail1;
+
 
 class CompleteOrderController extends Controller
 {
@@ -24,7 +25,7 @@ class CompleteOrderController extends Controller
 
     public function vieworders()
     {
-        $vieworder = CompletedOrder::where('File','=',NULL)->get();
+        $vieworder = CompletedOrder::all();
 
         return response()->json([
             'status' => 200,
@@ -44,7 +45,24 @@ class CompleteOrderController extends Controller
 
     public function index()
     {
-        $vithu = CompletedOrder::where('Approved','=',NULL)->get();
+        $vithu = CompletedOrder::where('Approved', '=', NULL)->get();
+        return response()->json([
+            'status' => 200,
+            'company' => $vithu,
+        ]);
+    }
+
+    public function index1()
+    {
+        $vithu = CompletedOrder::where('Approved', '=', 'yes')->get();
+        return response()->json([
+            'status' => 200,
+            'company' => $vithu,
+        ]);
+    }
+    public function index2()
+    {
+        $vithu = CompletedOrder::where('Approved', '=', 'no')->get();
         return response()->json([
             'status' => 200,
             'company' => $vithu,
@@ -59,7 +77,7 @@ class CompleteOrderController extends Controller
         $filename = time() . "." . $extension;
         $request->file->move('uploads/product/', $filename);
         $fileupload->File = 'uploads/product/' . $filename;
-        $fileupload->Email ='thevendranvithursan@gmail.com';
+        $fileupload->Email = 'thevendranvithursan@gmail.com';
         $results = $fileupload->save();
         if ($results) {
             return ["File Uploaded to database"];
@@ -73,6 +91,7 @@ class CompleteOrderController extends Controller
     {
         $driver = CompletedOrder::find($id);
         $driver->Approved = 'No';
+        $driver->File = NULL;
         $driver->save();
         $sendemail = $driver->Email;
         $this->sendEmail($sendemail);
@@ -82,7 +101,8 @@ class CompleteOrderController extends Controller
         ]);
     }
 
-    public function sendEmail($sendemail){
+    public function sendEmail($sendemail)
+    {
         $details = [
             'title' => 'Mail from Surfside Media',
             'body' => 'This is for testing mail using gmail'
@@ -99,14 +119,15 @@ class CompleteOrderController extends Controller
         $driver->save();
         $sendemail = $driver->Email;
         $sendname = $driver->name;
-        $this->sendEmail1($sendemail,$sendname);
+        $this->sendEmail1($sendemail, $sendname);
         return response()->json([
             'status' => 200,
             'message' => 'Student added successfully',
         ]);
     }
 
-    public function sendEmail1($sendemail,$sendname){
+    public function sendEmail1($sendemail, $sendname)
+    {
         $details = [
             'title' => 'Mail from Surfside Media',
             'body' => 'This is for testing mail using gmail',
@@ -116,4 +137,5 @@ class CompleteOrderController extends Controller
         Mail::to($sendemail)->send(new testmail1($details));
         return "Email Sent";
     }
+
 }

@@ -11,8 +11,7 @@ use App\Http\Controllers\DriverVehicle;
 use App\Http\Controllers\CompanyController1;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\vehicle;
-use App\Models\CompletedOrder;
-use App\Mail\testmail;
+use App\Http\Controllers\logincontroller;
 
 /* |------------------------------------------------------------- | API Routes |----------------------------------------------------------------------------*/
 
@@ -45,24 +44,33 @@ Route::get('order/id', [OrderController::class , 'search']);
 Route::post('order/add', [OrderController::class , 'store']);
 Route::get('vorder', [OrderController::class , 'vieworders']);
 Route::get('vorder/{id}', [OrderController::class , 'viewordersbyid']);
-Route::delete('delete/order/{id}', [OrderController::class, 'delete']);
+Route::delete('delete/order/{id}', [OrderController::class , 'delete']);
 
 //ongoing order controller
-Route::get('onorder', [OngoingOrderController::class, 'vieworders']);
-Route::get('onorder/{id}', [OngoingOrderController::class, 'viewordersbyid']);
-Route::post('add/ongoing', [OngoingOrderController::class, 'insert']);
-Route::delete('delete/ongoing/{id}', [OngoingOrderController::class, 'delete']);
+Route::get('onorder', [OngoingOrderController::class , 'vieworders']);
+Route::get('onorder/{id}', [OngoingOrderController::class , 'viewordersbyid']);
+Route::post('add/ongoing', [OngoingOrderController::class , 'insert']);
+Route::delete('delete/ongoing/{id}', [OngoingOrderController::class , 'delete']);
 
 //complete order controller
-Route::get('complete', [CompleteOrderController::class, 'vieworders']);
-Route::get('complete/{id}', [CompleteOrderController::class, 'viewordersbyid']);
-Route::post('add/complete', [CompleteOrderController::class, 'insert']);
-Route::get('/payment',[CompleteOrderController::class,'index']);
-Route::post('/fileupload',[CompleteOrderController::class,'FileUpload']);
-Route::get('/send-email',[CompleteOrderController::class,'sendEmail']);
-Route::post('/reject-payment/{id}',[CompleteOrderController::class,'update']);
-Route::post('/accept-payment/{id}',[CompleteOrderController::class,'update1']);
+Route::get('complete', [CompleteOrderController::class , 'vieworders']);
+Route::get('complete/{id}', [CompleteOrderController::class , 'viewordersbyid']);
+Route::post('add/complete', [CompleteOrderController::class , 'insert']);
+Route::get('/payment', [CompleteOrderController::class , 'index']);
+Route::get('/payment1', [CompleteOrderController::class , 'index1']);
+Route::get('/payment2', [CompleteOrderController::class , 'index2']);
+Route::post('/fileupload', [CompleteOrderController::class , 'FileUpload']);
+Route::get('/send-email', [CompleteOrderController::class , 'sendEmail']);
+Route::post('/reject-payment/{id}', [CompleteOrderController::class , 'update']);
+Route::post('/accept-payment/{id}', [CompleteOrderController::class , 'update1']);
+
+//login
+Route::post('login', [Logincontroller::class , 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
